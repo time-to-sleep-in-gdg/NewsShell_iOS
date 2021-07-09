@@ -8,11 +8,16 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeVC: UIViewController {
 
+    @IBAction func keywordButtonPressed(_ sender: Any) {
+        self.performSegue(withIdentifier: "TimelineSegue", sender: self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        print("View has loaded")
         // Do any additional setup after loading the view.
     }
     
