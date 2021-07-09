@@ -12,9 +12,9 @@ import RxSwift
 protocol ViewModel {
     var disposeBag: DisposeBag { get set }
     
-    associatedtype input
-    associatedtype output
+    associatedtype Input
+    associatedtype Output
     
-    func transform(_ input: input) -> output
+    func transform(_ input: Input) -> Output
 }
 
