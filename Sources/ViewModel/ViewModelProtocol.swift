@@ -7,10 +7,14 @@
 //
 
 import Foundation
+import RxSwift
 
 protocol ViewModel {
+    var disposeBag: DisposeBag { get set }
+    
     associatedtype input
     associatedtype output
     
     func transform(_ input: input) -> output
 }
+
