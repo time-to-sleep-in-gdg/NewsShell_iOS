@@ -6,6 +6,7 @@ target 'NewsShell' do
   use_frameworks!
 
   # Pods for NewsShell
+  pod 'Tabman', '~> 2.11'
 
   target 'NewsShellTests' do
     inherit! :search_paths
