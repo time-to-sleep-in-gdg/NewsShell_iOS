@@ -9,5 +9,7 @@
 import UIKit
 
 class KeywordCell: UICollectionViewCell {
-    
+    override func awakeFromNib() {
+        self.layer.masksToBounds = true
+    }
 }

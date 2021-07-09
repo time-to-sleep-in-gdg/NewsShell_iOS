@@ -31,6 +31,7 @@
         <!--KeywordsVC-->
         <scene sceneID="a3E-mP-hLK">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q8V-PZ-Asi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="KeywordsVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="8pD-mK-YGt" customClass="KeywordsVC" customModule="NewsShell" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fvL-oX-7tQ">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
@@ -39,42 +40,17 @@
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="bhc-I4-fyx">
                                 <rect key="frame" x="0.0" y="44" width="390" height="766"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96470588235294119" blue="0.97254901960784312" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="66K-HD-TlI">
-                                    <size key="itemSize" width="128" height="128"/>
-                                    <size key="headerReferenceSize" width="50" height="166"/>
-                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                                    <inset key="sectionInset" minX="16" minY="0.0" maxX="16" maxY="50"/>
-                                </collectionViewFlowLayout>
+                                <collectionViewLayout key="collectionViewLayout" id="JMd-ib-HhU" customClass="PinterestLayout" customModule="NewsShell" customModuleProvider="target"/>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="KtK-8A-PrW" customClass="KeywordCell" customModule="NewsShell" customModuleProvider="target">
-                                        <rect key="frame" x="16" y="166" width="128" height="128"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="EFF-eT-q1h">
-                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </collectionViewCellContentView>
                                     </collectionViewCell>
                                 </cells>
-                                <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="firstCellView" id="1QH-x4-IBT" customClass="FirstCellReusableView" customModule="NewsShell" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="166"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <subviews>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gEP-gc-xC0">
-                                            <rect key="frame" x="16" y="16" width="358" height="140"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                        </view>
-                                    </subviews>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <constraints>
-                                        <constraint firstItem="gEP-gc-xC0" firstAttribute="leading" secondItem="1QH-x4-IBT" secondAttribute="leading" constant="16" id="CgA-zl-gL3"/>
-                                        <constraint firstItem="gEP-gc-xC0" firstAttribute="top" secondItem="1QH-x4-IBT" secondAttribute="top" constant="16" id="PrA-Ot-JdY"/>
-                                        <constraint firstAttribute="bottom" secondItem="gEP-gc-xC0" secondAttribute="bottom" constant="10" id="eaG-3Y-XI6"/>
-                                        <constraint firstAttribute="trailing" secondItem="gEP-gc-xC0" secondAttribute="trailing" constant="16" id="re8-dM-bVi"/>
-                                    </constraints>
-                                    <connections>
-                                        <outlet property="firstCellView" destination="gEP-gc-xC0" id="d60-Sk-pbS"/>
-                                    </connections>
-                                </collectionReusableView>
                             </collectionView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="M81-tK-jJN"/>
@@ -90,7 +66,6 @@
                         <outlet property="keywordsCollectionView" destination="bhc-I4-fyx" id="Dmz-rr-BSK"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Q8V-PZ-Asi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-755.38461538461536" y="1043.6018957345971"/>
         </scene>

@@ -16,8 +16,13 @@ class KeywordsVC: UIViewController {
     private var flagOfCellHigh = true
     
     override func viewDidLoad() {
-        keywordsCollectionView.delegate = self
+        super.viewDidLoad()
+        keywordsCollectionView.contentInset = UIEdgeInsets(top: 23, left: 10, bottom: 10, right: 10)
+        if let layout = keywordsCollectionView?.collectionViewLayout as? PinterestLayout {
+            layout.delegate = self
+        }
         keywordsCollectionView.dataSource = self
+        
     }
     
     func getCellHigh(index: Int) -> CGFloat {
@@ -27,8 +32,8 @@ class KeywordsVC: UIViewController {
     
 }
 
-extension KeywordsVC: UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
-    
+extension KeywordsVC: PinterestLayoutDelegate, UICollectionViewDataSource {
+
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "firstCellView", for: indexPath) as! FirstCellReusableView
         headerView.firstCellView.setKeywordCell()
@@ -51,18 +56,7 @@ extension KeywordsVC: UICollectionViewDataSource, UICollectionViewDelegate, UICo
         return cell
     }
     
-    // 사이즈
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let collectionViewCellWithd = collectionView.frame.width / 2 - 21
-        return CGSize(width: collectionViewCellWithd, height: self.getCellHigh(index: indexPath.row))
+    func collectionView(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> CGFloat {
+        return getCellHigh(index: indexPath.row)
     }
-    //위아래 라인 간격
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    //옆 라인 간격
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return 10
-    }
-    
 }
