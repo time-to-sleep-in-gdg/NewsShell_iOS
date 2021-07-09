@@ -6,6 +6,11 @@ target 'NewsShell' do
   use_frameworks!
 
   # Pods for NewsShell
+  pod 'RxAlamofire', '6.1.1'
+  pod 'Alamofire', '5.4'
+  pod 'RxSwift', '6.2.0'
+  pod 'RxCocoa', '6.2.0'
+  pod 'Then', '2.7.0'
 
   target 'NewsShellTests' do
     inherit! :search_paths
