@@ -10,13 +10,14 @@ import Foundation
 import Alamofire
 
 enum NewsShellAPI {
-    
+    case home(categoryId: String, userId: String)
+    case keyword(keywordId: String, userId: String)
 }
 
 extension NewsShellAPI {
 
     public var uri: String {
-        let baseUrl = "http://13.125.161.204:8080"
+        let baseUrl = "https://newsshell-node-dev.herokuapp.com"
         return baseUrl + path
     }
 
@@ -52,8 +53,10 @@ extension NewsShellAPI {
 
     private var path: String {
         switch self {
-        default:
-            return ""
+        case .home(let categoryId, let userId):
+            return "/home?categoryId=\(categoryId)&userId=\(userId)"
+        case .keyword(let keywordId, let userId):
+            return "/keyword/\(keywordId)?userId=\(userId)"
         }
     }
 
