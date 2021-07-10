@@ -17,33 +17,31 @@ class KeywordsVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        keywordsCollectionView.contentInset = UIEdgeInsets(top: 23, left: 10, bottom: 10, right: 10)
+        keywordsCollectionView.contentInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         if let layout = keywordsCollectionView?.collectionViewLayout as? PinterestLayout {
             layout.delegate = self
         }
+        keywordsCollectionView.delegate = self
         keywordsCollectionView.dataSource = self
-        
+        registerCell()
     }
     
     func getCellHigh(index: Int) -> CGFloat {
-        if index%3 == 0 { flagOfCellHigh = !flagOfCellHigh }
-        return flagOfCellHigh ? 90 : 160
+        let cellHighList = [90,110,130,150]
+        if index == 0 {
+            return 160
+        } else {
+            return CGFloat(cellHighList[Int.random(in: 0...3)])
+        }
     }
     
 }
 
-extension KeywordsVC: PinterestLayoutDelegate, UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "firstCellView", for: indexPath) as! FirstCellReusableView
-        headerView.firstCellView.setKeywordCell()
-        return headerView
-    }
+extension KeywordsVC: PinterestLayoutDelegate, UICollectionViewDataSource, UICollectionViewDelegate {
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let width: CGFloat = collectionView.frame.width
-        let height: CGFloat = 200
-        return CGSize(width: width, height: height)
+    func registerCell() {
+        let clubMemberNib = UINib(nibName: "KeywordCell", bundle: nil)
+        keywordsCollectionView.register(clubMemberNib, forCellWithReuseIdentifier: "KeywordCell")
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -51,9 +49,15 @@ extension KeywordsVC: PinterestLayoutDelegate, UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! KeywordCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "KeywordCell", for: indexPath) as! KeywordCell
+        cell.bgView.setKeywordCell()
         cell.setKeywordCell()
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        let vc = UIStoryboard.init(name: "main", bundle: nil).instantiateViewController(withIdentifier: "TimeLineViewController") as! TimeLineVC
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, _ indexPath: IndexPath) -> CGFloat {

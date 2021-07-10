@@ -67,8 +67,8 @@ class HomeVC: TabmanViewController {
         bar.layout.contentInset  = UIEdgeInsets(top: 100.0, left: 0.0, bottom: 0.0, right: 0.0)
         bar.layout.transitionStyle = .snap
         bar.backgroundView.style = .clear
-        bar.indicator.tintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-        bar.buttons.customize{ $0.selectedTintColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1) }
+        bar.indicator.tintColor = .label
+        bar.buttons.customize{ $0.selectedTintColor = .label }
         
         addBar(bar, dataSource: self, at: .top)
         bar.layer.addBorder([.bottom], color: #colorLiteral(red: 0.7685618401, green: 0.768670857, blue: 0.7685275674, alpha: 1), width: 0.3)

@@ -51,7 +51,6 @@ class PinterestLayout: UICollectionViewLayout {
     for column in 0 ..< numberOfColumns {
       xOffset.append(CGFloat(column) * columnWidth)
     }
-    print(xOffset)
     var column = 0
     
     
@@ -66,7 +65,7 @@ class PinterestLayout: UICollectionViewLayout {
     contentHeight = max(contentHeight, frame.maxY)
     column = 0
     
-    var yOffset = [CGFloat](repeating: 172, count: numberOfColumns)
+    var yOffset = [CGFloat](repeating: height, count: numberOfColumns)
     for item in 1 ..< collectionView.numberOfItems(inSection: 0) {
       
       let indexPath = IndexPath(item: item, section: 0)

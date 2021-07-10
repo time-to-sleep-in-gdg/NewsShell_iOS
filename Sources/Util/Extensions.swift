@@ -10,10 +10,10 @@ import UIKit
 
 extension UIView {
     func setKeywordCell() {
+        self.layer.masksToBounds = false
         self.backgroundColor = .systemBackground
         self.layer.cornerRadius = 8
         self.layer.shadowColor = UIColor.black.cgColor
-        self.layer.masksToBounds = false
         self.layer.shadowOffset = CGSize(width: 0, height: 0)
         self.layer.shadowRadius = 2
         self.layer.shadowOpacity = 0.1
