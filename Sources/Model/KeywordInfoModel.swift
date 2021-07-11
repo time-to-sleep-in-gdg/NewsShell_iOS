@@ -9,12 +9,12 @@
 import Foundation
 
 struct KeywordInfoModel: Codable {
-    let alarm_cnt: Int
+    let alarm_cnt: Int?
     let category_name: String
     let keyword_id: Int
     let keyword_name: String
     let last_updated_at: String
-    let is_follow: Bool
+    let is_follow: Bool?
     let follow_cnt: Int
     let follow_user_profiles: [String]
     let timeline: TimeLine
@@ -30,19 +30,19 @@ struct Article: Codable {
     let article_id: Int
     let article_title: String
     let article_summary: String
-    let is_bookmark: Bool
     let is_hot: Bool
     let company: String
     let reporter_name: String
     let create_datetime: String
     let link: String
+    var isOpening: Bool?
 }
 
 struct Graph: Codable {
     let gender: Gender
     let age: Age
     let reaction: Reaction
-    let cloud_text: [CloudText]
+    let word_cloud_url: String
 }
 
 struct Gender: Codable {
@@ -62,9 +62,4 @@ struct Age: Codable {
 struct Reaction: Codable {
     let like: Int?
     let hate: Int?
-}
-
-struct CloudText: Codable {
-    let priority: Int
-    let text: String
 }

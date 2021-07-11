@@ -15,7 +15,7 @@ struct HomeModel: Codable {
     let keywords: [Keyword]
 }
 
-struct Category: Codable {
+struct Category: Codable, Equatable {
     let category_id: Int
     let category_name: String
 }
@@ -28,5 +28,6 @@ struct Keyword: Codable {
     let is_follow: Bool
     let follow_cnt: Int
     let follow_user_profiles: [String]
-    let reaction_cnt: Int
+    let view_cnt: Int
+    let comment_cnt: Int
 }

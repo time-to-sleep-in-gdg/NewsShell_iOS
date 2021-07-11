@@ -15,6 +15,7 @@ class TimeLineCell: UITableViewCell {
     public var stateOfExpandCell: StateOfExpandCell = .closed
     public var disposeBag = DisposeBag()
     
+    @IBOutlet weak var bar: UIView!
     @IBOutlet weak var articleView: UIView!
     @IBOutlet weak var contentViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var titleLabel: UILabel!
@@ -44,8 +45,8 @@ class TimeLineCell: UITableViewCell {
         viewMoreBtn.layer.masksToBounds = false
         viewMoreBtn.layer.shadowColor = UIColor.black.cgColor
         viewMoreBtn.layer.shadowOffset = CGSize(width: 0, height: 0)
-        viewMoreBtn.layer.shadowRadius = 2
-        viewMoreBtn.layer.shadowOpacity = 0.1
+        viewMoreBtn.layer.shadowRadius = 3
+        viewMoreBtn.layer.shadowOpacity = 0.2
         circleView.layer.cornerRadius = 4
     }
     
@@ -59,7 +60,7 @@ class TimeLineCell: UITableViewCell {
     }
     
     func openCell() {
-        self.contentViewHeightConstraint.constant = 164
+        self.contentViewHeightConstraint.constant = 170
         self.ctView.isHidden = false
         self.ctView.alpha = 1
         stateOfExpandCell = .opened

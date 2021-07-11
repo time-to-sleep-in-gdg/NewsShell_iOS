@@ -7,13 +7,15 @@
 //
 
 import UIKit
+import RxCocoa
+import RxSwift
 
 class KeywordsVC: UIViewController {
     
     @IBOutlet weak var keywordsCollectionView: UICollectionView!
     
-    public var keyword: String = ""
     private var flagOfCellHigh = true
+    public var keywords = [Keyword]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +26,10 @@ class KeywordsVC: UIViewController {
         keywordsCollectionView.delegate = self
         keywordsCollectionView.dataSource = self
         registerCell()
+        bind()
+    }
+    
+    func bind() {
     }
     
     func getCellHigh(index: Int) -> CGFloat {
@@ -45,18 +51,24 @@ extension KeywordsVC: PinterestLayoutDelegate, UICollectionViewDataSource, UICol
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return keywords.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "KeywordCell", for: indexPath) as! KeywordCell
-        cell.bgView.setKeywordCell()
-        cell.setKeywordCell()
+        let keyword = keywords[indexPath.row]
+        
+        cell.categoryLabel.text = keyword.category_name
+        cell.titleLabel.text = keyword.keyword_name
+        cell.watchedCountLabel.text = String(keyword.view_cnt)
+        cell.commentCountLabel.text = String(keyword.comment_cnt)
+        
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
         let vc = UIStoryboard.init(name: "main", bundle: nil).instantiateViewController(withIdentifier: "TimeLineViewController") as! TimeLineVC
+        vc.keywordId = keywords[indexPath.row].keyword_id
         self.navigationController?.pushViewController(vc, animated: true)
     }
     

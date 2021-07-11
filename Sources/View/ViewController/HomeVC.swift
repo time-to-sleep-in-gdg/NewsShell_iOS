@@ -9,23 +9,60 @@
 import UIKit
 import Tabman
 import Pageboy
+import RxSwift
+import RxCocoa
 
 class HomeVC: TabmanViewController {
 
+    private var viewModel = MainViewModel()
+    private var disposeBag = DisposeBag()
     private var viewControllers = [UIViewController]()
-    private var category = ["실시간","정치","경제","사회","문화","IT"]
+    private var categorys = [String]()
+    private let bar = TMBar.ButtonBar()
     
-    @IBAction func keywordButtonPressed(_ sender: Any) {
-        self.performSegue(withIdentifier: "TimelineSegue", sender: self)
-    }
+    @IBOutlet weak var alarmBtn: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        embeddViewControllers()
+        bind()
         setNavigationBar()
-        setTabbar()
         setTopTabbar()
+        setTabbar()
+    }
+    
+    func bind() {
+        let input = MainViewModel.Input()
+        let output = viewModel.transform(input)
+        
+        output.alarmCount.subscribe(onNext: {
+            print($0)
+            self.tabBarItem.badgeValue = "\($0)"
+        })
+        .disposed(by: disposeBag)
+        
+        output.categoryList.subscribe(onNext: { category in
+            output.keywordList.subscribe(onNext: { keywords in
+                self.categorys.append("전체")
+                let vc = UIStoryboard.init(name: "main", bundle: nil).instantiateViewController(withIdentifier: "KeywordsVC") as! KeywordsVC
+                for keyword in keywords {
+                    vc.keywords += keyword
+                }
+                self.viewControllers.append(vc)
+                for item in category {
+                    self.categorys.append(item.category_name)
+                    let vc = UIStoryboard.init(name: "main", bundle: nil).instantiateViewController(withIdentifier: "KeywordsVC") as! KeywordsVC
+                    vc.keywords = keywords[category.firstIndex(of: item)!]
+                    self.viewControllers.append(vc)
+                }
+                self.reloadData()
+                self.bar.layer.addBorder([.bottom], color: #colorLiteral(red: 0.7685618401, green: 0.768670857, blue: 0.7685275674, alpha: 1), width: 0.3)
+            })
+            .disposed(by: self.disposeBag)
+        })
+        .disposed(by: disposeBag)
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,18 +89,8 @@ class HomeVC: TabmanViewController {
         }
     }
     
-    func embeddViewControllers(){
-        for keyword in category {
-            let vc = UIStoryboard.init(name: "main", bundle: nil).instantiateViewController(withIdentifier: "KeywordsVC") as! KeywordsVC
-            vc.keyword = keyword
-            viewControllers.append(vc)
-        }
-    }
-    
     func setTopTabbar(){
         self.dataSource = self
-        
-        let bar = TMBar.ButtonBar()
         bar.layout.contentInset  = UIEdgeInsets(top: 100.0, left: 0.0, bottom: 0.0, right: 0.0)
         bar.layout.transitionStyle = .snap
         bar.backgroundView.style = .clear
@@ -71,7 +98,6 @@ class HomeVC: TabmanViewController {
         bar.buttons.customize{ $0.selectedTintColor = .label }
         
         addBar(bar, dataSource: self, at: .top)
-        bar.layer.addBorder([.bottom], color: #colorLiteral(red: 0.7685618401, green: 0.768670857, blue: 0.7685275674, alpha: 1), width: 0.3)
     }
     
     func setTabbar() {
@@ -83,9 +109,8 @@ class HomeVC: TabmanViewController {
 
 extension HomeVC: PageboyViewControllerDataSource, TMBarDataSource {
     func barItem(for bar: TMBar, at index: Int) -> TMBarItemable {
-        let indexViewController = viewControllers[index] as! KeywordsVC
         let item = TMBarItem(title: "")
-        item.title = indexViewController.keyword + "      "
+        item.title = categorys[index] + "          "
         
         return item
     }

@@ -45,3 +45,34 @@ extension CALayer {
         }
     }
 }
+
+extension String {
+    func dateProcessing() -> String{
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier:"ko_KR")
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSz"
+            
+        guard let temp = formatter.date(from: self) else {return ""}
+            
+        let diff = Date().timeIntervalSince1970 - temp.timeIntervalSince1970 + 32400
+        let day_diff = Int(diff / 86400)
+            
+        if day_diff < 0 || day_diff >= 31 {
+            formatter.dateFormat = "yyyy년 MM월 dd일"
+            let current_time_string = formatter.string(from: temp)
+            return current_time_string
+        } else {
+            return day_diff == 0 ? (
+                diff < 60 ? "방금":
+                diff < 120 ? "1분 전":
+                diff < 3600 ? "\(Int(diff/60))분 전":
+                diff < 7200 ? "1시간 전":
+                "\(Int(diff/3600))시간 전"
+            ): (
+                day_diff == 1 ? "어제":
+                day_diff < 7 ? "\(day_diff)일 전":
+                "\(Int(day_diff/7))주 전"
+            )
+        }
+    }
+}

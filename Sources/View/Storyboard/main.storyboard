@@ -94,7 +94,7 @@
                                                     <rect key="frame" x="195" y="0.0" width="195" height="50"/>
                                                     <fontDescription key="fontDescription" type="system" weight="medium" pointSize="18"/>
                                                     <state key="normal" title="그림그림">
-                                                        <color key="titleColor" red="0.46274507050000002" green="0.46274507050000002" blue="0.46274507050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                        <color key="titleColor" red="0.46274507050000002" green="0.46274507050000002" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                     </state>
                                                 </button>
                                                 <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Am-2F-Mhp">
@@ -135,12 +135,6 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mZx-ns-vqw">
                                 <rect key="frame" x="0.0" y="88" width="390" height="100"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="키워드" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3i-ba-T1M">
-                                        <rect key="frame" x="20.000000000000007" y="8" width="93.666666666666686" height="43"/>
-                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G5j-yP-5H8">
                                         <rect key="frame" x="315" y="12" width="55" height="30"/>
                                         <constraints>
@@ -151,6 +145,7 @@
                                         <state key="normal" title="팔로우">
                                             <color key="titleColor" red="0.46274507050000002" green="0.46274507050000002" blue="0.46274507050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         </state>
+                                        <state key="selected" title="팔로우 취소"/>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="사회 l 00시간전 l" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MMo-bg-SCd">
                                         <rect key="frame" x="20.000000000000007" y="59" width="102.66666666666669" height="18"/>
@@ -208,17 +203,25 @@
                                         <color key="textColor" red="0.46274507050000002" green="0.46274507050000002" blue="0.46274507050000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="키워드" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V3i-ba-T1M">
+                                        <rect key="frame" x="20" y="8" width="287" height="43"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="36"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="MMo-bg-SCd" firstAttribute="top" secondItem="V3i-ba-T1M" secondAttribute="bottom" constant="8" symbolic="YES" id="0mU-GA-TA7"/>
                                     <constraint firstItem="MMo-bg-SCd" firstAttribute="leading" secondItem="mZx-ns-vqw" secondAttribute="leading" constant="20" id="CjS-u4-jnT"/>
+                                    <constraint firstItem="G5j-yP-5H8" firstAttribute="leading" secondItem="V3i-ba-T1M" secondAttribute="trailing" constant="8" symbolic="YES" id="HRJ-Rs-uiJ"/>
                                     <constraint firstItem="gQ1-4T-9O0" firstAttribute="leading" secondItem="MMo-bg-SCd" secondAttribute="trailing" constant="8" symbolic="YES" id="Nhk-RK-Ngl"/>
                                     <constraint firstItem="G5j-yP-5H8" firstAttribute="top" secondItem="mZx-ns-vqw" secondAttribute="top" constant="12" id="V8M-iq-6Je"/>
                                     <constraint firstItem="V3i-ba-T1M" firstAttribute="top" secondItem="mZx-ns-vqw" secondAttribute="top" constant="8" id="Xjs-t8-wnt"/>
                                     <constraint firstItem="gQ1-4T-9O0" firstAttribute="centerY" secondItem="MMo-bg-SCd" secondAttribute="centerY" id="bsT-ic-Z4L"/>
                                     <constraint firstItem="Ahz-X0-C8C" firstAttribute="centerY" secondItem="MMo-bg-SCd" secondAttribute="centerY" id="cON-uo-zQx"/>
                                     <constraint firstItem="V3i-ba-T1M" firstAttribute="leading" secondItem="mZx-ns-vqw" secondAttribute="leading" constant="20" id="kHE-cv-BiI"/>
+                                    <constraint firstItem="MMo-bg-SCd" firstAttribute="top" secondItem="mZx-ns-vqw" secondAttribute="top" constant="59" id="m3S-fV-zwe"/>
                                     <constraint firstItem="Ahz-X0-C8C" firstAttribute="leading" secondItem="gQ1-4T-9O0" secondAttribute="trailing" constant="2" id="oNx-LZ-bn2"/>
                                     <constraint firstAttribute="trailing" secondItem="G5j-yP-5H8" secondAttribute="trailing" constant="20" id="uS6-mT-GYQ"/>
                                     <constraint firstAttribute="height" constant="100" id="wzj-cn-VpN"/>
@@ -249,6 +252,7 @@
                         <outlet property="infoLabel" destination="MMo-bg-SCd" id="dug-sB-Lyb"/>
                         <outlet property="mockLargeNavigationBar" destination="mZx-ns-vqw" id="wj0-bz-EyZ"/>
                         <outlet property="tableView" destination="yje-jm-G3N" id="Vh4-xE-LWc"/>
+                        <outlet property="titleLabel" destination="V3i-ba-T1M" id="xeL-XF-fk3"/>
                         <outlet property="viewTimeLineBtn" destination="Csw-UF-pnH" id="maE-cs-eye"/>
                         <outlet property="viewTimeLineStatusBar" destination="nUJ-Xu-5PE" id="Hok-Ar-oEu"/>
                         <outlet property="viewVisualStatusBar" destination="8Am-2F-Mhp" id="kEv-gF-bIf"/>
@@ -286,7 +290,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="vPy-n1-VUi"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" red="0.96862745289999996" green="0.96470588450000005" blue="0.97254908080000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="Zd4-RN-LTM" firstAttribute="leading" secondItem="vPy-n1-VUi" secondAttribute="leading" id="0BC-Ic-wy5"/>
                             <constraint firstItem="Zd4-RN-LTM" firstAttribute="top" secondItem="vPy-n1-VUi" secondAttribute="top" id="Z9G-r9-kzX"/>
@@ -298,6 +302,9 @@
                             <color key="tintColor" systemColor="labelColor"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="alarmBtn" destination="qNR-Un-hCo" id="hid-QT-OCa"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kfm-Rs-Xcl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
