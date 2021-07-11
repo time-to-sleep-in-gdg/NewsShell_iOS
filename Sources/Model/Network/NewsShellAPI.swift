@@ -54,13 +54,20 @@ extension NewsShellAPI {
     private var path: String {
         switch self {
         case .home(let categoryId, let userId):
-            return "/home?categoryId=\(categoryId)&userId=\(userId)"
+            return "/home?categoryId=\(categoryId)&userId=\(userId)&\(now())"
         case .keyword(let keywordId, let userId):
-            return "/keyword/\(keywordId)?userId=\(userId)"
+            return "/keyword/\(keywordId)?userId=\(userId)&\(now())"
         }
     }
 
     private func encodingQuery(query: String) -> String {
         return query.addingPercentEncoding(withAllowedCharacters: .urlFragmentAllowed) ?? query
+    }
+    
+    func now() -> String{
+        let formatter_time = DateFormatter()
+        formatter_time.dateFormat = "ss"
+        let current_time_string = formatter_time.string(from: Date())
+        return current_time_string
     }
 }

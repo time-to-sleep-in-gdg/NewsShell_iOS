@@ -12,6 +12,7 @@ target 'NewsShell' do
   pod 'RxSwift', '6.2.0'
   pod 'RxCocoa', '6.2.0'
   pod 'Then', '2.7.0'
+  pod 'Kingfisher', '6.3.0'
 
   target 'NewsShellTests' do
     inherit! :search_paths
