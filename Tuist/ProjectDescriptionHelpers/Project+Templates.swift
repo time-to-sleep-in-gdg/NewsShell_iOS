@@ -21,12 +21,7 @@ extension Project {
     /// Helper function to create the application target and the unit test target.
     private static func makeAppTargets(name: String, platform: Platform, dependencies: [TargetDependency]) -> [Target] {
         let platform: Platform = platform
-        let infoPlist: [String: InfoPlist.Value] = [
-            "CFBundleShortVersionString": "1.0",
-            "CFBundleVersion": "1",
-            "UIMainStoryboardFile": "TabBar",
-            "UILaunchStoryboardName": "LaunchScreen"
-            ]
+        let infoPlist: Path = Path("Supporting Files/Info.plist")
 
         let mainTarget = Target(
             name: name,
@@ -34,7 +29,7 @@ extension Project {
             product: .app,
             bundleId: "com.timeToSleep.\(name)",
             deploymentTarget: .iOS(targetVersion: "13.0", devices: .iphone),
-            infoPlist: .extendingDefault(with: infoPlist),
+            infoPlist: .file(path: infoPlist),
             sources: ["Sources/**"],
             resources: ["Resources/**"],
             dependencies: dependencies + [
